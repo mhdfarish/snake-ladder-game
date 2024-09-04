@@ -7,10 +7,19 @@
     <title>Snake Ladder Game</title>
     <style>
         body {
-            background-image: url(./assets/Горы\ Холмы\ Зеленая\ трава\ Дерево\ Природа\ Пейзаж\ Небо\ _\ Премиум\ векторы.jpeg);
-            background-repeat: no-repeat;
-            background-size: cover;
+            position: relative;
+            background-image: url(./assets/images/galaxy.jpg);
         }
+        body::before {
+            content: "";
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            top: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        
         * {
             box-sizing: border-box;
         }
@@ -31,12 +40,12 @@
         .game-table td {
             border: 1px solid black;
             text-align: center;
-            font-size: 25px;
+            font-size: 1.5rem;
             font-weight: bold;
         }
 
         .game-table tr:nth-child(odd) td:nth-child(odd) {
-            background: rgba(125, 1, 1, 1);
+            background: rgba(168, 21, 21, 1);
             color: white;
         }
 
@@ -55,69 +64,71 @@
 
         .green-ladder {
             position: absolute;
-            bottom: 30px;
-            left: 118px;
-            height: 220px;
-            width: 50px;
+            bottom: 1.875rem;
+            left: 7.375rem;
+            height: 13.75rem;
+            width: 3.125rem;
             rotate: 130deg;
             opacity: 0.6;
         }
 
         .yellow-ladder {
             position: absolute;
-            bottom: 130px;
-            left: 258px;
-            height: 270px;
-            width: 50px;
+            bottom: 8.125rem;
+            left: 16.125rem;
+            height: 16.875rem;
+            width: 3.125rem;
             rotate: 160deg;
             opacity: 0.6;
         }
 
         .green-snake {
             position: absolute;
-            bottom: 80px;
-            left: 258px;
-            height: 300px;
-            width: 100px;
+            bottom: 5rem;
+            left: 16.125rem;
+            height: 18.75rem;
+            width: 6.25rem;
             rotate: 62deg;
             opacity: 0.6;
         }
 
         .pink-snake {
             position: absolute;
-            bottom: 30px;
-            left: 188px;
-            height: 405px;
-            width: 100px;
+            bottom: 1.875rem;
+            left: 11.75rem;
+            height: 25.3125rem;
+            width: 6.25rem;
             rotate: 20deg;
             opacity: 0.6;
         }
 
         .coin {
-            background: rgba(2, 2, 205, 0.799);
+            background: rgba(18, 222, 62, 0.799);
             box-shadow: 0px 0px 5px rgb(52, 41, 41);
-            width: 48px;
-            height: 48px;
+            border: 2px solid white;
+            outline: 5px solid rgba(18, 222, 62, 0.799);
+            width: 2.8rem;
+            height: 2.8rem;
             border-radius: 50%;
             position: absolute;
-            left: -68px;
-            bottom: 20px;
+            left: -4.25rem;
+            bottom: 1.25rem;
             transition: all 600ms;
         }
 
         .dice-section {
             display: flex;
             justify-content: center;
-            margin-top: 50px;
+            margin-top: 3.125rem;
         }
 
         #dice {
-            width: 60px;
-            height: 60px;
+            width: 3.75rem;
+            height: 3.75rem;
             border: none;
             box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
             border-radius: 6px;
-            font-size: 28px;
+            font-size: 1.75rem;
             font-weight: bold;
             color: white;
             background: rgb(242, 13, 189);
@@ -128,8 +139,8 @@
 </head>
 
 <body>
-    <div class="game-container">
-        <div style="width: 450px; height: 450px; position: relative; display: flex; justify-content: end;">
+    <div align="center">
+        <div style="width: 28.125rem; height: 28.125rem; scale: 0.75; position: relative; display: flex; justify-content: end;">
             <table class="game-table">
                 <tr>
                     <td>21</td>
@@ -174,7 +185,7 @@
             <div class="coin" id="dice-coin"></div>
         </div>
     </div>
-    <div class="dice-section">
+    <div align="center">
         <button id="dice" onclick="rollDice(this)">6</button>
     </div>
     <script>
@@ -190,9 +201,9 @@
             16: 8,
             24: 2
         }
-        var left_start = -68;
-        var bottom_start = 20;
-        var moving_diff = 90;
+        var left_start = -4.25;
+        var bottom_start = 1.25;
+        var moving_diff = 5.625;
 
         function rollDice(e, dice_number) {
             dice_number = dice_number || Math.ceil(Math.random() * 6);
@@ -274,8 +285,8 @@
             if (type != "tuktuk") {
                 await new Promise((res) => {
                     setTimeout(() => {
-                        dice_coin.style.left = leftFinder(end) + "px"
-                        dice_coin.style.bottom = bottomFinder(end) + "px"
+                        dice_coin.style.left = leftFinder(end) + "rem"
+                        dice_coin.style.bottom = bottomFinder(end) + "rem"
                         res()
                     }, 600);
                 });
@@ -283,8 +294,8 @@
                 for (var i = end > start ? start + 1 : start; end > start ? i <= end : i >= end; end > start ? i++ : i--) {
                     await new Promise((res) => {
                         setTimeout(() => {
-                            dice_coin.style.left = leftFinder(i) + "px"
-                            dice_coin.style.bottom = bottomFinder(i) + "px"
+                            dice_coin.style.left = leftFinder(i) + "rem"
+                            dice_coin.style.bottom = bottomFinder(i) + "rem"
                             res()
                         }, 600);
                     });
